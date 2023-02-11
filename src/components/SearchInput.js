@@ -27,12 +27,13 @@ const SearchInput = ({ onChange, options, onClear, renderOption, inputValue }) =
         getOptionLabel={(option) => option?.title}
         isOptionEqualToValue={(option, value) => option.title === value}
         renderOption={renderOption}
+        open={true}
         filterOptions={(options) => options}
         renderInput={(params) => (
             <TextField
               {...params}
-              label="Search & Add stocks"
               variant="outlined"
+              placeholder="Search & Add stocks"
               InputProps={{
                 ...params.InputProps,
                 startAdornment: (

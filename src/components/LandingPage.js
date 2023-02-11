@@ -3,7 +3,7 @@ import {
   fetchStockByQuery,
   selectUser,
 } from "@/slice/stocksSlice";
-import { Box, Button, IconButton } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchInput from "./SearchInput";
@@ -39,19 +39,51 @@ function LandingPage() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          padding: "7px",
         }}
       >
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
+            flex: "0.8",
+            overflow: "hidden",
           }}
         >
-          <Box>{option.symbol}/</Box>
-          <Box>{option.title}/</Box>
-          <Box>{option.exchange}</Box>
+          <div
+            style={{
+              flex: "0.2",
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {option.symbol}
+          </div>
+          <div
+            style={{
+              flex: "0.6",
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              opacity: 0.7,
+            }}
+          >
+            {option.title}
+          </div>
+          <div
+            style={{
+              flex: "0.2",
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              opacity: 0.2,
+            }}
+          >
+            {option.exchange}
+          </div>
         </div>
-        <Box>
+        <Box flex={0.2}>
           <Button startIcon={<AddIcon />} onClick={() => onAddStock(option)}>
             Add
           </Button>
@@ -61,18 +93,18 @@ function LandingPage() {
   };
 
   return (
-    <Fragment>
-      <h1>My Watchlist</h1>
-      <div style={{ width: "40%" }}>
+    <Box display="flex" justifyContent="center">
+      <Box flex={0.3}>
+        <h1 style={{textAlign: "center"}}>My Entity Watchlist</h1>
         <SearchInput
-          options={results}
-          onChange={onChange}
-          onClear={onClear}
-          renderOption={RenderOption}
-          inputValue={value}
+        options={results}
+        onChange={onChange}
+        onClear={onClear}
+        renderOption={RenderOption}
+        inputValue={value}
         />
-      </div>
-    </Fragment>
+      </Box>
+    </Box>
   );
 }
 
