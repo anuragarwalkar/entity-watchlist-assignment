@@ -1,7 +1,7 @@
-.css-1qqsdnr-MuiAutocomplete-root .MuiOutlinedInput-root {
-    padding: 5px;
+.MuiAutocomplete-root .MuiOutlinedInput-root {
+    padding: 5px !important;
+    border-radius: 24px !important;
 }
-
-.css-1gywuxd-MuiInputBase-root-MuiOutlinedInput-root {
-    border-radius: 24px;
+body {
+    font-family: Roboto, system-ui;
 }
