@@ -4,17 +4,17 @@ import {
   selectUser,
 } from "@/slice/stocksSlice";
 import { Box, Button } from "@mui/material";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchInput from "./SearchInput";
 import AddIcon from "@mui/icons-material/Add";
+import ChipNavigator from "./ChipNavigator";
+import AddWatchlistModal from "./AddWatchlistModal/AddWatchlistModal";
 
 function LandingPage() {
   const results = useSelector(selectUser);
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
-
-  console.log("results:", results);
 
   const onChange = (value) => {
     setValue(value);
@@ -84,7 +84,7 @@ function LandingPage() {
           </div>
         </div>
         <Box flex={0.2}>
-          <Button startIcon={<AddIcon />} onClick={() => onAddStock(option)}>
+          <Button startIcon={<AddIcon />} color="success" onClick={() => onAddStock(option)}>
             Add
           </Button>
         </Box>
@@ -96,6 +96,7 @@ function LandingPage() {
     <Box display="flex" justifyContent="center">
       <Box flex={0.3}>
         <h1 style={{textAlign: "center"}}>My Entity Watchlist</h1>
+        <ChipNavigator />
         <SearchInput
         options={results}
         onChange={onChange}
@@ -103,6 +104,7 @@ function LandingPage() {
         renderOption={RenderOption}
         inputValue={value}
         />
+        <AddWatchlistModal />
       </Box>
     </Box>
   );

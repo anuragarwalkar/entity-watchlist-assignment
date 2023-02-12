@@ -1,7 +1,6 @@
 import { Autocomplete, InputAdornment, TextField } from "@mui/material";
 import React, { Fragment, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import ClearIcon from "@mui/icons-material/Clear";
 
 const SearchInput = ({ onChange, options, onClear, renderOption, inputValue }) => {
   const [showClearIcon, setShowClearIcon] = useState(false);
@@ -28,7 +27,6 @@ const SearchInput = ({ onChange, options, onClear, renderOption, inputValue }) =
         disableClearable
         isOptionEqualToValue={(option, value) => option.title === value}
         renderOption={renderOption}
-        open={true}
         filterOptions={(options) => options}
         renderInput={(params) => (
             <TextField
