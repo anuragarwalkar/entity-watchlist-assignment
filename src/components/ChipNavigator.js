@@ -6,7 +6,7 @@ import { setWatchlistModal } from "@/slice/utilSlice";
 
 function ChipNavigator() {
     const dispatch = useDispatch();
-   const allList = useSelector(selectAllWatchlists)
+   const allList = useSelector(selectAllWatchlists);
 
    const onAddWatchlist = () => {
     dispatch(setWatchlistModal(true));

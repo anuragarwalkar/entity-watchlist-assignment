@@ -1,6 +1,7 @@
 import {
   clearSearch,
-  fetchStockByQuery,
+  fetchStockBySymbol,
+  fetchStocksByQuery,
   selectUser,
 } from "@/slice/stocksSlice";
 import { Box, Button } from "@mui/material";
@@ -10,6 +11,8 @@ import SearchInput from "./SearchInput";
 import AddIcon from "@mui/icons-material/Add";
 import ChipNavigator from "./ChipNavigator";
 import AddWatchlistModal from "./AddWatchlistModal/AddWatchlistModal";
+import { cloneDeep } from "lodash";
+import WatchlistStocks from "./WatchlistStocks/WatchlistStocks";
 
 function LandingPage() {
   const results = useSelector(selectUser);
@@ -18,7 +21,7 @@ function LandingPage() {
 
   const onChange = (value) => {
     setValue(value);
-    dispatch(fetchStockByQuery(value));
+    dispatch(fetchStocksByQuery(value));
   };
 
   const onClear = () => {
@@ -26,8 +29,11 @@ function LandingPage() {
     dispatch(clearSearch());
   };
 
-  const onAddStock = () => {
-    // do something
+  const onAddStock = (stock) => {
+    const item = cloneDeep(stock)
+    delete item.id;
+    delete item.title;
+    dispatch(fetchStockBySymbol(item));
     onClear();
   };
 
@@ -104,6 +110,7 @@ function LandingPage() {
         renderOption={RenderOption}
         inputValue={value}
         />
+        <WatchlistStocks />
         <AddWatchlistModal />
       </Box>
     </Box>
