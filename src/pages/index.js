@@ -1,5 +1,5 @@
 
-import LandingPage from '@/components/LandingPage';
+import LandingPage from '@/components/LandingPage/LandingPage';
 import Head from 'next/head';
 
 

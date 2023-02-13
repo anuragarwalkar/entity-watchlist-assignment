@@ -66,6 +66,11 @@ export const stocksSlice = createSlice({
         return item;
       });
     },
+    removeWatchlistStocks: (state, { payload }) => {
+      state.watchlistStocks[state.selectedWatchlistId] = state.watchlistStocks[
+        state.selectedWatchlistId
+      ].filter((i) => payload.id !== i.id);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -81,8 +86,10 @@ export const stocksSlice = createSlice({
       })
       .addCase(fetchStockBySymbol.fulfilled, (state, { payload }) => {
         const mergedData = mergeComplexData(payload);
+
         if (state.watchlistStocks[state.selectedWatchlistId]) {
-          state.watchlistStocks[state.selectedWatchlistId].concat(mergedData);
+          state.watchlistStocks[state.selectedWatchlistId] =
+            state.watchlistStocks[state.selectedWatchlistId].concat(mergedData);
         } else {
           state.watchlistStocks[state.selectedWatchlistId] = mergedData;
         }
@@ -101,7 +108,11 @@ export const selectSelectedWatchlistStocks = (state) => {
   return selectedStocks ? Object.values(selectedStocks) : [];
 };
 
-export const { clearSearch, addWatchlist, setSelectedWatchlist } =
-  stocksSlice.actions;
+export const {
+  clearSearch,
+  addWatchlist,
+  setSelectedWatchlist,
+  removeWatchlistStocks,
+} = stocksSlice.actions;
 
 export default stocksSlice.reducer;

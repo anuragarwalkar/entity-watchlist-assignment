@@ -12,10 +12,10 @@ export const utilSlice = createSlice({
       state.showAddWatchlistModal = action.payload;
     },
   },
-  
 });
 
-export const selectAddWatchlistModal = (state) => state.utils.showAddWatchlistModal;
+export const selectAddWatchlistModal = (state) =>
+  state.utils.showAddWatchlistModal;
 
 export const { setWatchlistModal } = utilSlice.actions;
 export default utilSlice.reducer;

@@ -1,25 +1,17 @@
 import { Autocomplete, InputAdornment, TextField } from "@mui/material";
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import SearchIcon from "@mui/icons-material/Search";
+import useSearchInput from "./useSearchInput";
+import ClearIcon from '@mui/icons-material/Clear';
 
 const SearchInput = ({ onChange, options, onClear, renderOption, inputValue }) => {
-  const [showClearIcon, setShowClearIcon] = useState(false);
-
-  const handleChange = (event) => {
-    try {
-      const { target: { value } } = event;
-      setShowClearIcon(value !== "");
-      onChange(value); 
-    } catch (error) {
-      console.log(error);
-    }
-    
-  };
+  const { handleChange, showClearIcon, allList } = useSearchInput({onChange})
 
   return (
     <Fragment>
       <Autocomplete
         freeSolo
+        disabled={allList.length === 0}
         options={options}
         inputValue={inputValue}
         onInputChange={handleChange}
@@ -40,15 +32,15 @@ const SearchInput = ({ onChange, options, onClear, renderOption, inputValue }) =
                     <SearchIcon />
                   </InputAdornment>
                 ),
-                // endAdornment: (
-                //   <InputAdornment
-                //     position="end"
-                //     style={{ cursor: "pointer" }}
-                //     onClick={onClear}
-                //   >
-                //     {showClearIcon && <ClearIcon />}
-                //   </InputAdornment>
-                // ),
+                endAdornment: (
+                  <InputAdornment
+                    position="end"
+                    style={{ cursor: "pointer" }}
+                    onClick={onClear}
+                  >
+                    {showClearIcon && <ClearIcon />}
+                  </InputAdornment>
+                ),
               }}
             />
         )}
