@@ -24,7 +24,7 @@ function useStocklistWS() {
     allSelectedSocks.forEach(({ meta }) => {
         sendJsonMessage(generateWSMessage([meta], subscribe));
       });
-  }, [allSelectedSocks, sendJsonMessage, generateWSMessage])
+  }, [allSelectedSocks, sendJsonMessage])
 
 
   useEffect(() => {

@@ -1,11 +1,10 @@
-
 import { Box } from "@mui/material";
 import SearchInput from "../SearchInput/SearchInput";
 import ChipNavigator from "../ChipNavigator/ChipNavigator";
 import AddWatchlistModal from "../AddWatchlistModal/AddWatchlistModal";
 import WatchlistStocks from "../WatchlistStocks/WatchlistStocks";
 import useLandingPage from "./useLandingPage";
-import AppRow from "../AppRow/AppRow";
+import appRow from "../AppRow/appRow";
 
 function LandingPage() {
   const { results, onChange, onClear, value, onAddStock } = useLandingPage();
@@ -19,7 +18,7 @@ function LandingPage() {
         options={results}
         onChange={onChange}
         onClear={onClear}
-        renderOption={AppRow(onAddStock)}
+        renderOption={appRow(onAddStock)}
         inputValue={value}
         />
         <WatchlistStocks />

@@ -1,8 +1,9 @@
+/* eslint-disable */
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Button } from "@mui/material";
 import { styles } from "./styles";
 
-function AppRow(onAddStock) {
+function appRow(onAddStock) {
   return (_, option) => (
     <li key={option.id} style={styles.listItem}>
       <Box sx={styles.rowContainer}>
@@ -23,4 +24,4 @@ function AppRow(onAddStock) {
   );
 }
 
-export default AppRow;
+export default appRow;
