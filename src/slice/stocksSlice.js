@@ -1,4 +1,4 @@
-import { fetchData, postData } from "@/api";
+import { fetchData, postData } from "@/webServices";
 import { METHODS_QUOTE } from "@/utils/constant";
 import { generateSymbolArray, mergeComplexData } from "@/utils/util.functions";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -71,6 +71,16 @@ export const stocksSlice = createSlice({
         state.selectedWatchlistId
       ].filter((i) => payload.id !== i.id);
     },
+    updateWatchlistStocksData: (state, { payload }) => {
+      state.watchlistStocks[state.selectedWatchlistId] = state.watchlistStocks[
+        state.selectedWatchlistId
+      ].map((i) => {
+        if(payload.symbol === i.symbol) {
+          return {...i, ...payload};
+        }
+        return i;
+      });
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -84,8 +94,8 @@ export const stocksSlice = createSlice({
           }));
         state.searchResult = stocksMapped;
       })
-      .addCase(fetchStockBySymbol.fulfilled, (state, { payload }) => {
-        const mergedData = mergeComplexData(payload);
+      .addCase(fetchStockBySymbol.fulfilled, (state, { payload, meta: {arg} }) => {
+        const mergedData = mergeComplexData(payload, arg);
 
         if (state.watchlistStocks[state.selectedWatchlistId]) {
           state.watchlistStocks[state.selectedWatchlistId] =
@@ -113,6 +123,7 @@ export const {
   addWatchlist,
   setSelectedWatchlist,
   removeWatchlistStocks,
+  updateWatchlistStocksData,
 } = stocksSlice.actions;
 
 export default stocksSlice.reducer;

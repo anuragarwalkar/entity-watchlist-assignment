@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function useTableData () {
-    const allSelectedSocks = useSelector(selectSelectedWatchlistStocks);
+  const allSelectedSocks = useSelector(selectSelectedWatchlistStocks);
   const [rows, setRowsData] = useState([]);
   const dispatch = useDispatch();
 

@@ -9,9 +9,11 @@ import Paper from "@mui/material/Paper";
 import ClearIcon from "@mui/icons-material/Clear";
 import { IconButton } from "@mui/material";
 import useTableData from "./useTableData";
+import useStocklistWS from "./useStocklistWS";
 
 function WatchlistStocks() {
   const { convertToFixed, rows, removeStock } = useTableData();
+  useStocklistWS();
 
   return (
     <Fragment>
