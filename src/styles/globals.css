@@ -1,0 +1,12 @@
+.MuiAutocomplete-root .MuiOutlinedInput-root {
+    padding: 5px !important;
+    border-radius: 24px !important;
+}
+
+body {
+    font-family: Roboto, system-ui;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
