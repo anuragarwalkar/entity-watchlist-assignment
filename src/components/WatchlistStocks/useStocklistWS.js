@@ -1,6 +1,6 @@
 import { selectSelectedWatchlistStocks, updateWatchlistStocksData } from "@/slice/stocksSlice";
 import { generateWSMessage, getWebSocketURL } from "@/webServices";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useWebSocket } from "react-use-websocket/dist/lib/use-websocket";
 
@@ -18,13 +18,14 @@ function useStocklistWS() {
     if (event === "price") {
       dispatch(updateWatchlistStocksData(rest));
     }
-  }, [lastJsonMessage]);
+  }, [lastJsonMessage, dispatch]);
 
-  const sendMessages = (subscribe) => {
+  const sendMessages = useCallback((subscribe) => {
     allSelectedSocks.forEach(({ meta }) => {
         sendJsonMessage(generateWSMessage([meta], subscribe));
       });
-  }
+  }, [allSelectedSocks, sendJsonMessage, generateWSMessage])
+
 
   useEffect(() => {
     if (readyState) {
@@ -36,7 +37,7 @@ function useStocklistWS() {
         // socket?.close();
         sendMessages(false)
     };
-  }, [allSelectedSocks, readyState]);
+  }, [allSelectedSocks, readyState, sendMessages]);
 }
 
 export default useStocklistWS;
