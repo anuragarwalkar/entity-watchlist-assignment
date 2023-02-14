@@ -4,7 +4,7 @@ import ChipNavigator from "../ChipNavigator/ChipNavigator";
 import AddWatchlistModal from "../AddWatchlistModal/AddWatchlistModal";
 import WatchlistStocks from "../WatchlistStocks/WatchlistStocks";
 import useLandingPage from "./useLandingPage";
-import appRow from "../AppRow/appRow";
+import AppRow from "../AppRow/AppRow";
 
 function LandingPage() {
   const { results, onChange, onClear, value, onAddStock } = useLandingPage();
@@ -18,7 +18,7 @@ function LandingPage() {
         options={results}
         onChange={onChange}
         onClear={onClear}
-        renderOption={appRow(onAddStock)}
+        renderOption={AppRow(onAddStock)}
         inputValue={value}
         />
         <WatchlistStocks />

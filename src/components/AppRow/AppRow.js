@@ -3,7 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { Box, Button } from "@mui/material";
 import { styles } from "./styles";
 
-function appRow(onAddStock) {
+function AppRow(onAddStock) {
   return (_, option) => (
     <li key={option.id} style={styles.listItem}>
       <Box sx={styles.rowContainer}>
@@ -24,4 +24,4 @@ function appRow(onAddStock) {
   );
 }
 
-export default appRow;
+export default AppRow;
