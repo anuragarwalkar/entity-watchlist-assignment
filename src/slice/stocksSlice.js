@@ -30,7 +30,7 @@ export const fetchStocksByQuery = createAsyncThunk(
 
 export const fetchStockBySymbol = createAsyncThunk(
   "fetchStockBySymbol",
-  async (stock) => {
+  async (stock, {rejectWithValue}) => {
     const requestBody = {
       symbols: generateSymbolArray([stock]),
       intervals: ["1day"],
@@ -43,7 +43,7 @@ export const fetchStockBySymbol = createAsyncThunk(
     const [error] = data?.filter(d => d.code && d.code !== 200);
 
     if(error) {
-      return Promise.reject(error.message);
+      return rejectWithValue(error.message);
     }
 
     return data;
@@ -71,6 +71,32 @@ export const stocksSlice = createSlice({
         item.isSelected = item.id === payload.id;
         return item;
       });
+    },
+    removeWatchlist: (state, { payload }) => {
+      const result = [];
+
+      for (let i = 0; i < state.watchlists.length; i++) {
+        const item = state.watchlists[i];
+        let lastIndex = null;
+
+        if(lastIndex === i) {
+          state.selectedWatchlistId = item.id;
+          item.isSelected = true;
+        }else {
+          item.isSelected = false;
+        }
+
+        if(payload.id === item.id) {
+          lastIndex = i + 1;
+          delete state.watchlistStocks[item.id];
+        }else {
+          result.push;
+        }
+
+        
+      }
+      
+      state.watchlists = result;
     },
     removeWatchlistStocks: (state, { payload }) => {
       state.watchlistStocks[state.selectedWatchlistId] = state.watchlistStocks[
@@ -133,6 +159,7 @@ export const {
   setSelectedWatchlist,
   removeWatchlistStocks,
   updateWatchlistStocksData,
+  removeWatchlist,
 } = stocksSlice.actions;
 
 export default stocksSlice.reducer;

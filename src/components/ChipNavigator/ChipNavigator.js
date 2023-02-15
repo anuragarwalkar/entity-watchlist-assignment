@@ -1,10 +1,9 @@
-import { selectAllWatchlists, setSelectedWatchlist } from "@/slice/stocksSlice";
+import { removeWatchlist, selectAllWatchlists, setSelectedWatchlist } from "@/slice/stocksSlice";
 import { Chip, Stack } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import AddIcon from "@mui/icons-material/Add";
 import { setWatchlistModal } from "@/slice/utilSlice";
 import AppChip from "../Chip/AppChip";
-
 
 function ChipNavigator() {
   const dispatch = useDispatch();
@@ -18,6 +17,10 @@ function ChipNavigator() {
     dispatch(setSelectedWatchlist(item));
   };
 
+  const onDeleteWatchList = (item) => {
+    dispatch(removeWatchlist(item));
+  };
+
   return (
     <Stack direction="row" spacing={1} marginBottom="10px">
       {allList.map((i) => (
@@ -27,6 +30,7 @@ function ChipNavigator() {
           isSelected={i.isSelected}
           name={i.name}
           onChange={onChangeWatchlist}
+          onDelete={onDeleteWatchList}
         />
       ))}
       <Chip
