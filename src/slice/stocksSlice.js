@@ -40,6 +40,12 @@ export const fetchStockBySymbol = createAsyncThunk(
 
     const { data } = await response.json();
 
+    const [error] = data?.filter(d => d.code && d.code !== 200);
+
+    if(error) {
+      return Promise.reject(error.message);
+    }
+
     return data;
   }
 );
@@ -103,6 +109,9 @@ export const stocksSlice = createSlice({
         } else {
           state.watchlistStocks[state.selectedWatchlistId] = mergedData;
         }
+      })
+      .addCase(fetchStockBySymbol.rejected, (_, { payload }) => {
+        alert(payload);
       });
   },
 });
