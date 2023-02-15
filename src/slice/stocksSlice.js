@@ -30,7 +30,7 @@ export const fetchStocksByQuery = createAsyncThunk(
 
 export const fetchStockBySymbol = createAsyncThunk(
   "fetchStockBySymbol",
-  async (stock) => {
+  async (stock, {rejectWithValue}) => {
     const requestBody = {
       symbols: generateSymbolArray([stock]),
       intervals: ["1day"],
@@ -43,7 +43,7 @@ export const fetchStockBySymbol = createAsyncThunk(
     const [error] = data?.filter(d => d.code && d.code !== 200);
 
     if(error) {
-      return Promise.reject(error.message);
+      return rejectWithValue(error.message);
     }
 
     return data;
