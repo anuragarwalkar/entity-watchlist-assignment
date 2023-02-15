@@ -2,7 +2,7 @@
 
 ### 🔥 Tech Stack
 ![Nextjs](https://img.shields.io/badge/nextjs-%2361DAFB.svg?&style=for-the-badge&logo=nextjs&logoColor=white)
-![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![Redux](https://img.shields.io/badge/redux--toolkit-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
 
 #### Additional Libraries
 Material UI, react-use-websocket, redux-persist
