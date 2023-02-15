@@ -72,6 +72,32 @@ export const stocksSlice = createSlice({
         return item;
       });
     },
+    removeWatchlist: (state, { payload }) => {
+      const result = [];
+
+      for (let i = 0; i < state.watchlists.length; i++) {
+        const item = state.watchlists[i];
+        let lastIndex = null;
+
+        if(lastIndex === i) {
+          state.selectedWatchlistId = item.id;
+          item.isSelected = true;
+        }else {
+          item.isSelected = false;
+        }
+
+        if(payload.id === item.id) {
+          lastIndex = i + 1;
+          delete state.watchlistStocks[item.id];
+        }else {
+          result.push;
+        }
+
+        
+      }
+      
+      state.watchlists = result;
+    },
     removeWatchlistStocks: (state, { payload }) => {
       state.watchlistStocks[state.selectedWatchlistId] = state.watchlistStocks[
         state.selectedWatchlistId
@@ -133,6 +159,7 @@ export const {
   setSelectedWatchlist,
   removeWatchlistStocks,
   updateWatchlistStocksData,
+  removeWatchlist,
 } = stocksSlice.actions;
 
 export default stocksSlice.reducer;
