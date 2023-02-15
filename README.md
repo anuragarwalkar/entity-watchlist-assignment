@@ -5,4 +5,4 @@
 ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
 #### For UI Library used Material UI
 
-Deployed on Vercel https://entity-watchlist-assignment.vercel.app/
+Deployed CD-CD on Vercel Main Branch: https://entity-watchlist-assignment.vercel.app/
