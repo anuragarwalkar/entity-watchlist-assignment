@@ -77,23 +77,21 @@ export const stocksSlice = createSlice({
 
       for (let i = 0; i < state.watchlists.length; i++) {
         const item = state.watchlists[i];
-        let lastIndex = null;
+        item.isSelected = false;
 
-        if(lastIndex === i) {
-          state.selectedWatchlistId = item.id;
-          item.isSelected = true;
-        }else {
-          item.isSelected = false;
-        }
 
         if(payload.id === item.id) {
-          lastIndex = i + 1;
           delete state.watchlistStocks[item.id];
         }else {
-          result.push;
+          result.push(item);
         }
 
-        
+        if(result.length) {
+          result[0].isSelected = true;
+          state.selectedWatchlistId = result[0].id;
+        }else {
+          state.selectedWatchlistId = "";
+        }
       }
       
       state.watchlists = result;
